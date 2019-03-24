@@ -37,11 +37,24 @@ public class BinarySearchTest {
         int firstPosition = 0;
 
         Assert.assertTrue(threeNumberSequence.length > 1);
-        SearchResult searchResult = BinarySearch.search(testKey, oneNumberSequence);
+        SearchResult searchResult = BinarySearch.search(testKey, threeNumberSequence);
 
         Assert.assertTrue(searchResult.isFound());
-        Assert.assertEquals(testKey, oneNumberSequence[searchResult.getPosition()]);
+        Assert.assertEquals(testKey, threeNumberSequence[searchResult.getPosition()]);
         Assert.assertEquals(firstPosition, searchResult.getPosition());
+    }
+
+    @Test
+    public void testKeyIsLastElementInSequenceWithLengthMoreThanOne() {
+        int testKey = 8;
+        int lastPosition = threeNumberSequence.length - 1;
+
+        Assert.assertTrue(threeNumberSequence.length > 1);
+        SearchResult searchResult = BinarySearch.search(testKey, threeNumberSequence);
+
+        Assert.assertTrue(searchResult.isFound());
+        Assert.assertEquals(testKey, threeNumberSequence[searchResult.getPosition()]);
+        Assert.assertEquals(lastPosition, searchResult.getPosition());
     }
 
 }
