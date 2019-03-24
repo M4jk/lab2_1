@@ -70,4 +70,15 @@ public class BinarySearchTest {
         Assert.assertEquals(middlePosition, searchResult.getPosition());
     }
 
+    @Test
+    public void testKeyIsNotFoundInSequenceWithLengthMoreThanOne() {
+        int testKey = 4;
+        int KEY_NOT_FOUND_IN_SEQUENCE_INDICATOR = -1;
+
+        Assert.assertTrue(threeNumberSequence.length > 1);
+        SearchResult searchResult = BinarySearch.search(testKey, threeNumberSequence);
+
+        Assert.assertFalse(searchResult.isFound());
+        Assert.assertEquals(KEY_NOT_FOUND_IN_SEQUENCE_INDICATOR, searchResult.getPosition());
+    }
 }
