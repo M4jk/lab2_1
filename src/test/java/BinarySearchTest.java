@@ -57,4 +57,17 @@ public class BinarySearchTest {
         Assert.assertEquals(lastPosition, searchResult.getPosition());
     }
 
+    @Test
+    public void testKeyIsMiddleElementInSequenceWithLengthMoreThanOne() {
+        int testKey = 7;
+        int middlePosition = (threeNumberSequence.length - 1) / 2;
+
+        Assert.assertTrue(threeNumberSequence.length > 1);
+        SearchResult searchResult = BinarySearch.search(testKey, threeNumberSequence);
+
+        Assert.assertTrue(searchResult.isFound());
+        Assert.assertEquals(testKey, threeNumberSequence[searchResult.getPosition()]);
+        Assert.assertEquals(middlePosition, searchResult.getPosition());
+    }
+
 }
