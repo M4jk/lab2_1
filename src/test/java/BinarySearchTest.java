@@ -11,6 +11,8 @@ public class BinarySearchTest {
     private final int[] zeroNumberSequence = {};
     private final int[] oneNumberSequence = {6};
     private final int[] threeNumberSequence = {6, 7, 8};
+    private final int[] fourNumberSequence = {6, 7, 8, 9};
+    private final int[] sameNumberSequence = {9, 9, 9, 9 ,9};
     private final int KEY_NOT_FOUND_IN_SEQUENCE_INDICATOR = -1;
 
     @Test
@@ -90,5 +92,41 @@ public class BinarySearchTest {
         int testKey = 6;
 
         BinarySearch.search(testKey, zeroNumberSequence);
+    }
+
+    @Test
+    public void testKeyIsMiddleMinusOneElementInSequenceWithEvenLength() {
+        int testKey = 7;
+        int middleMinusOnePosition = (fourNumberSequence.length - 1) / 2;
+
+        Assert.assertThat(fourNumberSequence.length, greaterThan(1));
+        SearchResult searchResult = BinarySearch.search(testKey, fourNumberSequence);
+
+        Assert.assertThat(searchResult.isFound(), is(true));
+        Assert.assertThat(fourNumberSequence[searchResult.getPosition()], is(testKey));
+        Assert.assertThat(searchResult.getPosition(), is(middleMinusOnePosition));
+    }
+
+    @Test
+    public void testKeyIsMiddlePlusOneElementInSequenceWithEvenLength() {
+        int testKey = 8;
+        int middlePlusOnePosition = fourNumberSequence.length / 2;
+
+        Assert.assertThat(fourNumberSequence.length, greaterThan(1));
+        SearchResult searchResult = BinarySearch.search(testKey, fourNumberSequence);
+
+        Assert.assertThat(searchResult.isFound(), is(true));
+        Assert.assertThat(fourNumberSequence[searchResult.getPosition()], is(testKey));
+        Assert.assertThat(searchResult.getPosition(), is(middlePlusOnePosition));
+    }
+
+    @Test
+    public void testKeyIsFoundInSameValueSequence() {
+        int testKey = 9;
+
+        SearchResult searchResult = BinarySearch.search(testKey, sameNumberSequence);
+
+        Assert.assertThat(searchResult.isFound(), is(true));
+        Assert.assertThat(sameNumberSequence[searchResult.getPosition()], is(testKey));
     }
 }
